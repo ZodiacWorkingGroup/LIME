@@ -5,6 +5,7 @@ from tkinter.scrolledtext import ScrolledText
 from tkinter.messagebox import *
 from tkinter.filedialog import *
 from lambda_calculus import *
+from GUI_customtext import *
 
 sys.stdout = io.TextIOWrapper(sys.stdout.detach(), sys.stdout.encoding, 'replace')
 
@@ -19,16 +20,20 @@ class LCWin(Tk):
         self.checkSyntax = cs
         self.titlestring = u'LIME \u03BB-calculator'
         self.filename = ''
-        self.saved = False
+        self.saved = True
 
-        self.lambdawin = ScrolledText(self, width=80, height=20)
+        self.lambdawin = CustomText(self, width=80, height=20)
         self.outwin = ScrolledText(self, height=8, background='#CCCCCC')
+
+        self.lambdawin.tag_configure('lambda', foreground='#00CC00', font=('Courier New', 10, 'bold'))
+        self.lambdawin.tag_configure('comment', foreground='#CC0000', font=('Courier New', 10, 'italic'))
+        self.lambdawin.tag_configure('named', foreground='#0000CC', font=('Courier New', 10, 'roman'))
 
         self.lambdawin.grid(row=0, column=0, sticky=N+E+S+W)
         self.bind_class('Text', '<\\>', self.insertlambda)
         self.bind_class('Text', '<.>', self.insertperiod)
         self.bind_class('Text', '<Control-r>', self.execute)
-        self.bind('<Key>', self.unsaved)
+        self.bind('<Key>', self.keypress)
 
         self.mb = Menu(self)
 
@@ -56,6 +61,13 @@ class LCWin(Tk):
         self.mb.add_cascade(menu=self.editmenu, label='Edit')
 
         self.config(menu=self.mb)
+
+        self.bind_class('Text', '<Control-o>', self.openfile)
+        self.bind('<Control-s>', self.savefile)
+        self.bind('<Control-Shift-s>', self.saveasfile)
+
+        self.bind('Control-w', self.comns)
+
         self.updateview()
 
     def updateview(self, e=None):
@@ -88,29 +100,36 @@ class LCWin(Tk):
     def clear(self, *args):
         self.lambdawin.delete(1.0, END)
 
-    def unsaved(self, e=None):
+    def keypress(self, e=None):
         self.saved = False
+        # self.lambdawin.highlight_pattern(r'[^().=a-z]', 'named', regexp=True)  # Highlight names
+        self.lambdawin.highlight_pattern(u'\u03BB', 'lambda', regexp=True)  # Highlight lambdas
+        self.lambdawin.highlight_pattern(r'#.*', 'comment', regexp=True)  # Highlihgt and italicize commments
 
     def comns(self, e=None):  # Command Not Supported
         showerror('Unsupported Command', 'Command not yet supported. Sorry :/.')
 
     def openfile(self, e=None):
+        save = False
         if self.saved == False:
             save = askyesnocancel('Save file?', 'You are about to clear the current project. Would you like to save it?')
 
-        if self.saved != None:
+        if save != None:
             if save:
                 self.savefile()
-            self.filename = askopenfile()
+            self.filename = askopenfilename()
 
             if self.filename:
                 self.lambdawin.delete(1.0, END)
-                self.lambdawin.insert(END, codecs.open(str(self.filename), 'r', 'cp1252').read())
-                self.update()
+                self.lambdawin.insert(END, codecs.open(str(self.filename), 'r', 'utf-8').read())
+                self.updateview()
+        self.keypress()
 
     def savefile(self, e=None):
         if self.filename != '':
-            open(str(self.filename), 'w').write(self.lambdawin.get(1.0, END))
+            f = codecs.open(str(self.filename), 'w', 'utf-8')
+            f.write(self.lambdawin.get(1.0, END))
+            f.close()
         else:
             self.saveasfile()
 
@@ -118,16 +137,27 @@ class LCWin(Tk):
         fn = asksaveasfilename()
         if fn:
             self.filename = fn
-            open(str(self.filename), 'w').write(self.lambdawin.get(1.0, END))
-            self.update()
+            f = codecs.open(str(self.filename), 'w', 'utf-8')
+            f.write(self.lambdawin.get(1.0, END))
+            f.close()
+            self.updateview()
 
     def close(self, e=None):
-        pass
+        if not self.saved:
+            save = False
+            if self.saved == False:
+                save = askyesnocancel('Save file?', 'You are about to clear the current project. Would you like to save it?')
+
+            if save != None:
+                if save:
+                    self.savefile()
+
+        self.destroy()
 
 
 def badSetting(setting):
     raise ValueError('Invalid value for '+setting+': '+config[setting])
 
-config = {x.split(':', 1)[0].strip():x.split(':', 1)[1].strip() for x in open('lambda.cfg').read().split('\n')}
+config = {x.split(':', 1)[0].strip():x.split(':', 1)[1].strip() for x in open('lambda.cfg').read().split('\n') if x}
 lc = LCWin(True if config['checkSyntax'] == 'True' else (False if config['checkSyntax'] == 'False' else badSetting('checkSyntax')))
 lc.mainloop()

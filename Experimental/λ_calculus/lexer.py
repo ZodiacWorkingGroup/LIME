@@ -27,7 +27,7 @@ def lexl(exp):  # Lex a single line
     lexr.add_token_expr(r'^\.', DOT)  # . keyword
     lexr.add_token_expr(r'^=', EQ)  # Equal sign
     lexr.add_token_expr(r'^[a-z]', NAME)  # variables/names in λ-expressions
-    lexr.add_token_expr(r'^.', ID)  # IDs that can have λ-expressions assigned to them
+    lexr.add_token_expr(r'^.(\*+|\[[^\]]+])?', ID)  # IDs that can have λ-expressions assigned to them
 
     return lexr.lex(exp)
 
@@ -36,5 +36,5 @@ def lex(lines):
     return [lexl(x) for x in lines.strip('\n').split('\n')]  # split by newlines and lex lines and return list of result
 
 if __name__ == '__main__':
-    print(lex('$ = λx.y\n(λx.x)$'))  # λx.x is an expression (the identity function) and $ is a named expression
+    print(lex('$*** = λx.y\nN[1] = λz.λq.a\n(λx.x)$'))  # λx.x is an expression (the identity function) and $ is a named expression
     input()

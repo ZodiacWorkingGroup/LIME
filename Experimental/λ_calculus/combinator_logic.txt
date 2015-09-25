@@ -1,0 +1,16 @@
+## Primitive combinators (defined in pure λ-calculus)
+
+K = λx.λy.x  # Constant-making Combinator (Kx y = x)
+S = λx.λy.λz.(x z (y z))  # Self-application Combinator (Sxyz = xz(yz))
+
+## I combinator (Defined in SK)
+
+I = S K K  # Identity combinator (Ix = x)
+
+
+## B,C,K,W system (older Combinator Logic system)
+
+B = S (K S) K  # composition of x and y (Bxyz = x(yz))
+C = S (S (K (S (K S) K)) S) (K K)  # Swap y and z (Cxyz = xzy)
+# K = K: K combinator is a primative from both SKI and B,C,K,W, and it was already defined.
+W = S S (S K)  # Duplicate y (Wxy = xyy)
