@@ -20,6 +20,7 @@ def lexl(exp):  # Lex a single line
 
     lexr = lexer()  # Create a Lexer object
 
+    lexr.add_token_expr(r'#.*', None)  # Comments
     lexr.add_token_expr(r'^[\s]', None)  # Ignore whitespace (never newlines, as those are split by in lex())
     lexr.add_token_expr(u'^λ', LAMBDA, (0, None, 1), lam)  # λ keyword
     lexr.add_token_expr(r'^[()]', PAREN)  # Parentheses

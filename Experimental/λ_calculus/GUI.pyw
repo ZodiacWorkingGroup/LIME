@@ -15,12 +15,13 @@ class LCWin(Tk):
 
         self.checkSyntax = cs
 
-        self.lambdawin = ScrolledText(self)
+        self.lambdawin = ScrolledText(self, width=80, height=20)
+        self.outwin = ScrolledText(self, height=8, background='#CCCCCC')
 
         self.lambdawin.grid(row=0, column=0, sticky=N+E+S+W)
         self.bind_class('Text', '<\\>', self.insertlambda)
         self.bind_class('Text', '<.>', self.insertperiod)
-        self.bind('<Control-r>', self.execute)
+        self.bind_class('Text', '<Control-r>', self.execute)
 
     def insertlambda(self, e):
         if (self.lambdawin.get('insert-1c') != u'\u03BB' and self.lambdawin.get('insert+1c') != u'\u03BB') or not self.checkSyntax:
@@ -31,10 +32,17 @@ class LCWin(Tk):
             self.lambdawin.insert(INSERT, '.')
 
     def execute(self, e):
-        self.outwin = ScrolledText(self, height=6, background='#CCCCCC')
+        self.config(height=self.lambdawin.winfo_reqheight()-8)
         self.outwin.grid(row=1, column=0, sticky=N+E+S+W)
-        self.outwin.kill = lambda s, e: s.destroy()
-        self.outwin.bind('<Escape>', self.outwin.kill)
+
+        def killOutWin(event):
+            self.outwin.frame.destroy()
+            self.config(height=self.lambdawin.winfo_reqheight()+8)
+            self.unbind('<Escape>', funcid=None)
+            self.outwin = ScrolledText(self, height=8, background='#CCCCCC')
+
+        self.outwin.kill = killOutWin
+        self.bind('<Escape>', self.outwin.kill)
 
         self.outwin.insert(END, lceval(self.lambdawin.get(1.0, END)))
         self.outwin.config(state=DISABLED)
