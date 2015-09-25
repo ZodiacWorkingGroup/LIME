@@ -1,0 +1,5 @@
+## Primitives
+λxy.a # Kestrel
+λxyz.xz(bc) #Starling
+
+## Others

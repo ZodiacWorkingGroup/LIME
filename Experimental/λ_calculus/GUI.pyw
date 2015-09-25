@@ -94,7 +94,7 @@ class LCWin(Tk):
         self.outwin.kill = killOutWin
         self.bind('<Escape>', self.outwin.kill)
 
-        self.outwin.insert(END, lceval(self.lambdawin.get(1.0, END)))
+        self.outwin.insert(END, '\n\n'.join([str(x) for x in lceval(self.lambdawin.get(1.0, END))]))
         self.outwin.config(state=DISABLED)
 
     def clear(self, *args):
@@ -155,9 +155,10 @@ class LCWin(Tk):
         self.destroy()
 
 
-def badSetting(setting):
-    raise ValueError('Invalid value for '+setting+': '+config[setting])
+if __name__ == '__main__':
+    def badSetting(setting):
+        raise ValueError('Invalid value for '+setting+': '+config[setting])
 
-config = {x.split(':', 1)[0].strip():x.split(':', 1)[1].strip() for x in open('lambda.cfg').read().split('\n') if x}
-lc = LCWin(True if config['checkSyntax'] == 'True' else (False if config['checkSyntax'] == 'False' else badSetting('checkSyntax')))
-lc.mainloop()
+    config = {x.split(':', 1)[0].strip():x.split(':', 1)[1].strip() for x in open('lambda.cfg').read().split('\n') if x}
+    lc = LCWin(True if config['checkSyntax'] == 'True' else (False if config['checkSyntax'] == 'False' else badSetting('checkSyntax')))
+    lc.mainloop()

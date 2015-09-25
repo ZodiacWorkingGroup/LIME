@@ -31,6 +31,26 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="lc_parser.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Experimental/λ_calculus/lc_parser.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4" column="8" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AST.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Experimental/λ_calculus/AST.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="lexer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Experimental/λ_calculus/lexer.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -41,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GUI.pyw" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GUI.pyw" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Experimental/λ_calculus/GUI.pyw">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+            <state vertical-scroll-proportion="1.1686542">
+              <caret line="158" column="16" selection-start-line="158" selection-start-column="16" selection-end-line="158" selection-end-column="16" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -56,19 +76,21 @@
       <file leaf-file-name="UtopiaLexer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Experimental/λ_calculus/UtopiaLexer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.588236">
+            <state vertical-scroll-proportion="0.0">
               <caret line="59" column="65" selection-start-line="59" selection-start-column="64" selection-end-line="59" selection-end-column="65" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GUI_customtext.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GUI_customtext.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Experimental/λ_calculus/GUI_customtext.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.3321976">
-              <caret line="0" column="26" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
-              <folding />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -87,8 +109,9 @@
         <option value="$PROJECT_DIR$/Experimental/λ_calculus/parser.py" />
         <option value="$PROJECT_DIR$/Experimental/λ_calculus/evaluator.py" />
         <option value="$PROJECT_DIR$/Experimental/λ_calculus/GUI_customtext.py" />
-        <option value="$PROJECT_DIR$/Experimental/λ_calculus/GUI.pyw" />
         <option value="$PROJECT_DIR$/Experimental/λ_calculus/lexer.py" />
+        <option value="$PROJECT_DIR$/Experimental/λ_calculus/GUI.pyw" />
+        <option value="$PROJECT_DIR$/Experimental/λ_calculus/AST.py" />
       </list>
     </option>
   </component>
@@ -379,7 +402,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2015625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -469,6 +492,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Experimental/λ_calculus/lc_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="8" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Experimental/λ_calculus/AST.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Experimental/λ_calculus/lexer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -477,19 +516,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Experimental/λ_calculus/GUI.pyw">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Experimental/λ_calculus/UtopiaLexer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.588236">
+        <state vertical-scroll-proportion="0.0">
           <caret line="59" column="65" selection-start-line="59" selection-start-column="64" selection-end-line="59" selection-end-column="65" />
           <folding />
         </state>
@@ -497,9 +526,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Experimental/λ_calculus/GUI_customtext.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.3321976">
-          <caret line="0" column="26" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Experimental/λ_calculus/GUI.pyw">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1686542">
+          <caret line="158" column="16" selection-start-line="158" selection-start-column="16" selection-end-line="158" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
