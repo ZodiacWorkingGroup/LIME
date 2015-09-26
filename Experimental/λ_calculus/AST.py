@@ -1,9 +1,22 @@
+from copy import deepcopy
+
+
 class Expression:
     pass
 
 
 class Assignment:
     pass
+
+
+class Operator:
+    def __init__(self, exp):
+        self.exp = exp
+
+    def eval(self, env, l, r):
+        env2 = deepcopy(env)
+        # Add l and r to env2
+        return self.exp.eval(env2)
 
 
 class Name(Expression):
@@ -49,6 +62,9 @@ class OpExp(Expression):
         self.r = r
         self.op = op
 
+    def eval(self, env):
+        self.op.eval(env, self.l.eval(env), self.r.eval(env))
+
 
 class IDAssignment(Assignment):
     def __init__(self, id, exp):
@@ -65,3 +81,6 @@ class OperatorAssignment(Assignment):
         self.rid = rid
         self.op = op
         self.exp = exp
+
+    def eval(self, env):
+        env[self.op] = Operator(self.exp)
