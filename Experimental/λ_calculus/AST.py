@@ -10,12 +10,14 @@ class Assignment:
 
 
 class Operator:
-    def __init__(self, exp):
+    def __init__(self, exp, lid, rid):
         self.exp = exp
+        self.lid = lid
+        self.rid = rid
 
     def eval(self, env, l, r):
         env2 = deepcopy(env)
-        # Add l and r to env2
+        env2.update({self.lid: l, self.rid: r})
         return self.exp.eval(env2)
 
 
@@ -28,8 +30,8 @@ class Name(Expression):
 
 
 class ID(Expression):
-    def __init__(self, id):
-        self.id = id
+    def __init__(self, identity):
+        self.id = identity
 
     def eval(self, env):
         if self.id in env:
@@ -67,8 +69,8 @@ class OpExp(Expression):
 
 
 class IDAssignment(Assignment):
-    def __init__(self, id, exp):
-        self.id = id
+    def __init__(self, identity, exp):
+        self.id = identity
         self.expression = exp
 
     def eval(self, env):
@@ -83,4 +85,4 @@ class OperatorAssignment(Assignment):
         self.exp = exp
 
     def eval(self, env):
-        env[self.op] = Operator(self.exp)
+        env[self.op] = Operator(self.exp, self.lid, self.rid)
