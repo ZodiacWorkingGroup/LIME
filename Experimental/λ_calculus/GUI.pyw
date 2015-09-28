@@ -25,9 +25,10 @@ class LCWin(Tk):
         self.lambdawin = CustomText(self, width=80, height=20)
         self.outwin = ScrolledText(self, height=8, background='#CCCCCC')
 
+        self.lambdawin.tag_configure('named', foreground='#0000CC', font=('Courier New', 10, 'roman'))
         self.lambdawin.tag_configure('lambda', foreground='#00CC00', font=('Courier New', 10, 'bold'))
         self.lambdawin.tag_configure('comment', foreground='#CC0000', font=('Courier New', 10, 'italic'))
-        self.lambdawin.tag_configure('named', foreground='#0000CC', font=('Courier New', 10, 'roman'))
+        self.lambdawin.tag_configure('paren', foreground='#FF0000', font=('Courier New', 10, 'bold'))
 
         self.lambdawin.grid(row=0, column=0, sticky=N+E+S+W)
         self.bind_class('Text', '<\\>', self.insertlambda)
@@ -102,9 +103,10 @@ class LCWin(Tk):
 
     def keypress(self, e=None):
         self.saved = False
-        # self.lambdawin.highlight_pattern(r'[^().=a-z]', 'named', regexp=True)  # Highlight names
+        self.lambdawin.highlight_pattern(r'[^().=a-z\s]', 'named', regexp=True)  # Highlight names
         self.lambdawin.highlight_pattern(u'\u03BB', 'lambda', regexp=True)  # Highlight lambdas
-        self.lambdawin.highlight_pattern(r'#.*', 'comment', regexp=True)  # Highlihgt and italicize commments
+        self.lambdawin.highlight_pattern(r'#.*', 'comment', regexp=True)  # Highlight and italicize commments
+        self.lambdawin.highlight_pattern(r'[()]', 'paren', regexp=True)  # Highlight and bold parenthesis
 
     def comns(self, e=None):  # Command Not Supported
         showerror('Unsupported Command', 'Command not yet supported. Sorry :/.')

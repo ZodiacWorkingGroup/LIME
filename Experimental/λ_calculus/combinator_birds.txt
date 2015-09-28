@@ -1,10 +1,10 @@
 ## Primitives
-λxy.a          #Kestrel
-λxyz.xz(bc)    #Starling
+K = λxy.x          #Kestrel
+S = λxyz.xz(yz)    #Starling
 
 ## Others
 B = S(KS)K     #Bluebird
-B[1] = BBB     #Blackbrid
+B[1] = BBB     #Blackbird
 B[2] = B(BBB)B #Bunting
 B[3] = B(BB)B  #Becard
 C = S(BBS)(KK) #Cardinal
@@ -46,4 +46,3 @@ F** = BF*      #Finch Twice Removed
 V** = BV*      #Vireo Twice Removed
 ω = MM         #OMEGA BIRD xD
 θ = YO         #Theta (Bird?)
-
