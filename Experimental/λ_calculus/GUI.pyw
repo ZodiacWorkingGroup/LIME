@@ -11,13 +11,13 @@ sys.stdout = io.TextIOWrapper(sys.stdout.detach(), sys.stdout.encoding, 'replace
 
 
 class LCWin(Tk):
-    def __init__(self, cs=True, *args, **kwargs):
+    def __init__(self, conf={}, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
         for x in range(1):
             Grid.columnconfigure(self, x, weight=1)
             Grid.rowconfigure(self, x, weight=1)
 
-        self.checkSyntax = cs
+        self.conf = conf
         self.titlestring = u'LIME \u03BB-calculator'
         self.filename = ''
         self.saved = True
@@ -33,6 +33,7 @@ class LCWin(Tk):
         self.lambdawin.grid(row=0, column=0, sticky=N+E+S+W)
         self.bind_class('Text', '<\\>', self.insertlambda)
         self.bind_class('Text', '<.>', self.insertperiod)
+        self.bind_class('Text', '<=>', self.insertequals)
         self.bind_class('Text', '<Control-r>', self.execute)
         self.bind('<Key>', self.keypress)
 
@@ -75,12 +76,20 @@ class LCWin(Tk):
         self.title(self.titlestring+' -- '+(self.filename if self.filename else 'Untitled'))
 
     def insertlambda(self, e):
-        if (self.lambdawin.get('insert-1c') != u'\u03BB' and self.lambdawin.get('insert+1c') != u'\u03BB') or not self.checkSyntax:
+        if (self.lambdawin.get('insert-1c') != u'\u03BB' and self.lambdawin.get('insert+1c') != u'\u03BB') or not self.conf['checkSyntax'] == 'True':
             self.lambdawin.insert(INSERT, u'\u03BB')
 
     def insertperiod(self, e):
-        if (self.lambdawin.get('insert-1c') != '.' and self.lambdawin.get('insert+1c') != '.') or not self.checkSyntax:
+        if (self.lambdawin.get('insert-1c') != '.' and self.lambdawin.get('insert+1c') != '.') or not self.conf['checkSyntax'] == 'True':
             self.lambdawin.insert(INSERT, '.')
+
+    def insertequals(self, e):
+        if self.conf['threeBars'] == 'True':
+            if (self.lambdawin.get('insert-1c') != '\u2261' and self.lambdawin.get('insert+1c') != '\u2261') or not self.conf['checkSyntax'] == 'True':
+                self.lambdawin.insert(INSERT, '\u2261')
+        else:
+            if (self.lambdawin.get('insert-1c') != '=' and self.lambdawin.get('insert+1c') != '=') or not self.conf['checkSyntax'] == 'True':
+                self.lambdawin.insert(INSERT, '=')
 
     def execute(self, e):
         self.config(height=self.lambdawin.winfo_reqheight()-8)
@@ -103,7 +112,7 @@ class LCWin(Tk):
 
     def keypress(self, e=None):
         self.saved = False
-        self.lambdawin.highlight_pattern(r'[^().=a-z\s]', 'named', regexp=True)  # Highlight names
+        self.lambdawin.highlight_pattern(r'([^().=a-z\s\u2261]|\{[^}]+\})', 'named', regexp=True)  # Highlight names
         self.lambdawin.highlight_pattern(u'\u03BB', 'lambda', regexp=True)  # Highlight lambdas
         self.lambdawin.highlight_pattern(r'#.*', 'comment', regexp=True)  # Highlight and italicize commments
         self.lambdawin.highlight_pattern(r'[()]', 'paren', regexp=True)  # Highlight and bold parenthesis
@@ -162,5 +171,5 @@ if __name__ == '__main__':
         raise ValueError('Invalid value for '+setting+': '+config[setting])
 
     config = {x.split(':', 1)[0].strip():x.split(':', 1)[1].strip() for x in open('lambda.cfg').read().split('\n') if x}
-    lc = LCWin(True if config['checkSyntax'] == 'True' else (False if config['checkSyntax'] == 'False' else badSetting('checkSyntax')))
+    lc = LCWin(config)
     lc.mainloop()
