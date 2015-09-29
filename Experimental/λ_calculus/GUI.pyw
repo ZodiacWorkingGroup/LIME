@@ -22,13 +22,27 @@ class LCWin(Tk):
         self.filename = ''
         self.saved = True
 
-        self.lambdawin = CustomText(self, width=80, height=20)
-        self.outwin = ScrolledText(self, height=8, background='#CCCCCC')
+        self.lambdawin = CustomText(self, width=80, height=20, font=(self.conf['formatting']['default.typeface'],
+                                                                        int(self.conf['formatting']['size']),
+                                                                        self.conf['formatting']['default.font']))
 
-        self.lambdawin.tag_configure('named', foreground='#0000CC', font=('Courier New', 10, 'roman'))
-        self.lambdawin.tag_configure('lambda', foreground='#00CC00', font=('Courier New', 10, 'bold'))
-        self.lambdawin.tag_configure('comment', foreground='#CC0000', font=('Courier New', 10, 'italic'))
-        self.lambdawin.tag_configure('paren', foreground='#FF0000', font=('Courier New', 10, 'bold'))
+        self.outwin = ScrolledText(self, height=8, background='#CCCCCC', font=(
+                                                                        self.conf['formatting']['default.typeface'],
+                                                                        int(self.conf['formatting']['size']),
+                                                                        self.conf['formatting']['default.font']))
+
+        self.lambdawin.tag_configure('named', foreground='#0000CC', font=(self.conf['formatting']['named.typeface'],
+                                                                          int(self.conf['formatting']['size']),
+                                                                          self.conf['formatting']['named.font']))
+        self.lambdawin.tag_configure('paren', foreground='#FF0000', font=(self.conf['formatting']['paren.typeface'],
+                                                                          int(self.conf['formatting']['size']),
+                                                                          self.conf['formatting']['paren.font']))
+        self.lambdawin.tag_configure('lambda', foreground='#00CC00', font=(self.conf['formatting']['lambda.typeface'],
+                                                                           int(self.conf['formatting']['size']),
+                                                                           self.conf['formatting']['lambda.font']))
+        self.lambdawin.tag_configure('comment', foreground='#CC0000', font=(self.conf['formatting']['comment.typeface'],
+                                                                            int(self.conf['formatting']['size']),
+                                                                            self.conf['formatting']['comment.font']))
 
         self.lambdawin.grid(row=0, column=0, sticky=N+E+S+W)
         self.bind_class('Text', '<\\>', self.insertlambda)
@@ -112,10 +126,11 @@ class LCWin(Tk):
 
     def keypress(self, e=None):
         self.saved = False
-        self.lambdawin.highlight_pattern(r'([^().=a-z\s\u2261]|\{[^}]+\})', 'named', regexp=True)  # Highlight names
-        self.lambdawin.highlight_pattern(u'\u03BB', 'lambda', regexp=True)  # Highlight lambdas
-        self.lambdawin.highlight_pattern(r'#.*', 'comment', regexp=True)  # Highlight and italicize commments
-        self.lambdawin.highlight_pattern(r'[()]', 'paren', regexp=True)  # Highlight and bold parenthesis
+        if self.conf['syntaxHighlighting']:
+            self.lambdawin.highlight_pattern(r'([^().=a-z\s\u2261]|\{[^}]+\})', 'named', regexp=True)  # Highlight names
+            self.lambdawin.highlight_pattern(u'\u03BB', 'lambda', regexp=True)  # Highlight lambdas
+            self.lambdawin.highlight_pattern(r'#.*', 'comment', regexp=True)  # Highlight and italicize commments
+            self.lambdawin.highlight_pattern(r'[()]', 'paren', regexp=True)  # Highlight and bold parenthesis
 
     def comns(self, e=None):  # Command Not Supported
         showerror('Unsupported Command', 'Command not yet supported. Sorry :/.')
@@ -139,7 +154,7 @@ class LCWin(Tk):
     def savefile(self, e=None):
         if self.filename != '':
             f = codecs.open(str(self.filename), 'w', 'utf-8')
-            f.write(self.lambdawin.get(1.0, END))
+            f.write(self.lambdawin.get(1.0, END)[:-1])
             f.close()
         else:
             self.saveasfile()
@@ -149,7 +164,7 @@ class LCWin(Tk):
         if fn:
             self.filename = fn
             f = codecs.open(str(self.filename), 'w', 'utf-8')
-            f.write(self.lambdawin.get(1.0, END))
+            f.write(self.lambdawin.get(1.0, END)[:-1])
             f.close()
             self.updateview()
 
@@ -171,5 +186,10 @@ if __name__ == '__main__':
         raise ValueError('Invalid value for '+setting+': '+config[setting])
 
     config = {x.split(':', 1)[0].strip():x.split(':', 1)[1].strip() for x in open('lambda.cfg').read().split('\n') if x}
+    rep = {x.split(':', 1)[0].strip():x.split(':', 1)[1].strip() for x in open('replace.cfg').read().split('\n') if x}
+    form = {x.split(':', 1)[0].strip():x.split(':', 1)[1].strip() for x in open('formatting.cfg').read().split('\n') if x}
+    config['replace'] = rep
+    config['formatting'] = form
+
     lc = LCWin(config)
     lc.mainloop()

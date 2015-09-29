@@ -9,18 +9,6 @@ class Assignment:
     pass
 
 
-class Operator:
-    def __init__(self, exp, lid, rid):
-        self.exp = exp
-        self.lid = lid
-        self.rid = rid
-
-    def eval(self, env, l, r):
-        env2 = deepcopy(env)
-        env2.update({self.lid: l, self.rid: r})
-        return self.exp.eval(env2)
-
-
 class Name(Expression):
     def __init__(self, name):
         self.name = name
@@ -58,6 +46,28 @@ class Application(Expression):
         pass
 
 
+class IDAssignment(Assignment):
+    def __init__(self, identity, exp):
+        self.id = identity
+        self.expression = exp
+
+    def eval(self, env):
+        env[self.id] = self.expression.eval(env)
+
+
+# Removed Features
+'''class Operator:
+    def __init__(self, exp, lid, rid):
+        self.exp = exp
+        self.lid = lid
+        self.rid = rid
+
+    def eval(self, env, l, r):
+        env2 = deepcopy(env)
+        env2.update({self.lid: l, self.rid: r})
+        return self.exp.eval(env2)
+
+
 class OpExp(Expression):
     def __init__(self, l, r, op):
         self.l = l
@@ -68,15 +78,6 @@ class OpExp(Expression):
         self.op.eval(env, self.l.eval(env), self.r.eval(env))
 
 
-class IDAssignment(Assignment):
-    def __init__(self, identity, exp):
-        self.id = identity
-        self.expression = exp
-
-    def eval(self, env):
-        env[self.id] = self.expression.eval(env)
-
-
 class OperatorAssignment(Assignment):
     def __init__(self, lid, rid, op, exp):
         self.lid = lid
@@ -85,4 +86,4 @@ class OperatorAssignment(Assignment):
         self.exp = exp
 
     def eval(self, env):
-        env[self.op] = Operator(self.exp, self.lid, self.rid)
+        env[self.op] = Operator(self.exp, self.lid, self.rid)'''

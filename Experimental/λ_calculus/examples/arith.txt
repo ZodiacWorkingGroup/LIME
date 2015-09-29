@@ -1,0 +1,40 @@
+### Arithmetic
+## Numbers
+0   = λsz.z        #Zero
+1   = λsz.s(z)     #One
+2   = λsz.s(s(z))  #Etc.
+3   = λsz.s(s(s(z)))
+
+## Operations
+S   = λwyx.y(wyx)  #Successor Function
++ = S
+* = (λxyz.x(yz))
+# X^Y = ???
+
+
+### Booleans/Logic
+## Booleans
+T   = λxy.x        #Logical 1
+F   = λxy.y        #Logical 0
+
+## Logical Operations
+& = (λxy.xyF)  #Logical Conjunction
+| = (λxy.xTy)  #Logical Disjunction
+!  = (λx.xFT)    #Logical Negation
+
+## Conditionals
+Z  = λx.xF!F      #T if N is equal to 0, else F
+
+
+### Arithmetic derived from Booleans/Logic
+## More Operations (defined with Booleans)
+Φ   = (λpz.z(S(pT))(pT))  #Something about pairs...
+P   = (λn.nΦ(λz.z00)F     #Predecessor Function
+
+
+### Comparisons
+G = (λxy.Z(xPy))   #x>y
+E = (λxy.&(Z(xPy))(ZyPx))) #Equality Testing
+
+### Recursion
+Y = (λy.(λx.y(xx))(λx.y(xx)))
