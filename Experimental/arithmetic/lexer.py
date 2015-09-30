@@ -15,6 +15,6 @@ def lex(exp):  # Lex a single line
     lexr.add_token_expr(r'^[\s]', None)
     lexr.add_token_expr(r'^[0-9]+(\.[0-9]+)?', NUM)
     lexr.add_token_expr(r'^[()]', PAREN)
-    lexr.add_token_expr(r'^(\+|-|/|\*|%|^)', OP)
+    lexr.add_token_expr(r'^(\+|-|/|\*|%|\^)', OP)
 
     return lexr.lex(exp)

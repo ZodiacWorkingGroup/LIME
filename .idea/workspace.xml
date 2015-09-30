@@ -25,7 +25,7 @@
         <entry file="file://$PROJECT_DIR$/Experimental/arithmetic/lexer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+              <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -37,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/Experimental/arithmetic/UtopiaLexer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-5.382353">
-              <caret line="46" column="54" selection-start-line="46" selection-start-column="52" selection-end-line="46" selection-end-column="54" />
+              <caret line="18" column="35" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="35" />
               <folding>
                 <element signature="e#24#33#0" expanded="true" />
               </folding>
@@ -48,18 +48,18 @@
       <file leaf-file-name="AST.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Experimental/arithmetic/AST.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.0">
-              <caret line="42" column="81" selection-start-line="42" selection-start-column="81" selection-end-line="42" selection-end-column="81" />
+            <state vertical-scroll-proportion="-4.5">
+              <caret line="9" column="12" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parser.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Experimental/arithmetic/parser.py">
+      <file leaf-file-name="exp_parser.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Experimental/arithmetic/exp_parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6109091">
-              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.79636365">
+              <caret line="57" column="60" selection-start-line="57" selection-start-column="54" selection-end-line="57" selection-end-column="60" />
               <folding>
                 <element signature="e#102#119#0" expanded="true" />
               </folding>
@@ -70,8 +70,18 @@
       <file leaf-file-name="parser_combinators.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Experimental/arithmetic/parser_combinators.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.382353">
-              <caret line="153" column="10" selection-start-line="153" selection-start-column="10" selection-end-line="153" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="execute.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Experimental/arithmetic/execute.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -104,11 +114,13 @@
         <option value="$PROJECT_DIR$/Experimental/kleene_algebra/lexer.py" />
         <option value="$PROJECT_DIR$/Experimental/geometry/lexer.py" />
         <option value="$PROJECT_DIR$/Experimental/numeric_set_theory/lexer.py" />
-        <option value="$PROJECT_DIR$/Experimental/arithmetic/lexer.py" />
         <option value="$PROJECT_DIR$/Experimental/arithmetic/UtopiaLexer.py" />
         <option value="$PROJECT_DIR$/Experimental/arithmetic/AST.py" />
-        <option value="$PROJECT_DIR$/Experimental/arithmetic/parser_combinators.py" />
         <option value="$PROJECT_DIR$/Experimental/arithmetic/parser.py" />
+        <option value="$PROJECT_DIR$/Experimental/arithmetic/parser_combinators.py" />
+        <option value="$PROJECT_DIR$/Experimental/arithmetic/execute.py" />
+        <option value="$PROJECT_DIR$/Experimental/arithmetic/lexer.py" />
+        <option value="$PROJECT_DIR$/Experimental/arithmetic/exp_parser.py" />
       </list>
     </option>
   </component>
@@ -254,7 +266,7 @@
       <recent name="C:\Users\Owner\Desktop\Programming\LIME\Libraries\Arithmetic" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.parser">
+  <component name="RunManager" selected="Python.execute">
     <configuration default="false" name="lexer" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -301,7 +313,24 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="LIME" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Experimental/arithmetic/parser.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Owner\Desktop\Programming\LIME\Experimental\arithmetic\exp_parser.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="execute" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Experimental/arithmetic" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="LIME" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Experimental/arithmetic/execute.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -428,16 +457,18 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Python.lexer" />
       <item index="1" class="java.lang.String" itemvalue="Python.GUI.pyw" />
       <item index="2" class="java.lang.String" itemvalue="Python.parser" />
+      <item index="3" class="java.lang.String" itemvalue="Python.execute" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python.parser" />
-        <item index="1" class="java.lang.String" itemvalue="Python.GUI.pyw" />
-        <item index="2" class="java.lang.String" itemvalue="Python.lexer" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.execute" />
+        <item index="1" class="java.lang.String" itemvalue="Python.parser" />
+        <item index="2" class="java.lang.String" itemvalue="Python.GUI.pyw" />
+        <item index="3" class="java.lang.String" itemvalue="Python.lexer" />
       </list>
     </recent_temporary>
   </component>
@@ -455,7 +486,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2046875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -496,14 +527,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Experimental/λ_calculus/AST.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="15" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Experimental/λ_calculus/lexer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -879,7 +902,7 @@
     <entry file="file://$PROJECT_DIR$/Experimental/arithmetic/lexer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
@@ -889,7 +912,7 @@
     <entry file="file://$PROJECT_DIR$/Experimental/arithmetic/UtopiaLexer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.382353">
-          <caret line="46" column="54" selection-start-line="46" selection-start-column="52" selection-end-line="46" selection-end-column="54" />
+          <caret line="18" column="35" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="35" />
           <folding>
             <element signature="e#24#33#0" expanded="true" />
           </folding>
@@ -898,24 +921,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Experimental/arithmetic/AST.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.0">
-          <caret line="42" column="81" selection-start-line="42" selection-start-column="81" selection-end-line="42" selection-end-column="81" />
+        <state vertical-scroll-proportion="-4.5">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Experimental/arithmetic/execute.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Experimental/arithmetic/parser_combinators.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.382353">
-          <caret line="153" column="10" selection-start-line="153" selection-start-column="10" selection-end-line="153" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Experimental/arithmetic/parser.py">
+    <entry file="file://$PROJECT_DIR$/Experimental/arithmetic/exp_parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6109091">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.79636365">
+          <caret line="57" column="60" selection-start-line="57" selection-start-column="54" selection-end-line="57" selection-end-column="60" />
           <folding>
             <element signature="e#102#119#0" expanded="true" />
           </folding>

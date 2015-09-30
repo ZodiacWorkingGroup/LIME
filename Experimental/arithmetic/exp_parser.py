@@ -36,13 +36,14 @@ def process_binop(op):
 
 
 def any_operator_in_list(ops):
-    op_parsers = [keyword(op, OP) for op in ops]
+    op_parsers = [keyword(op[0], OP) for op in ops]
     parser = reduce(lambda l, r: l | r, op_parsers)
     return parser
 
 aexp_precedence_levels = [
-    ['*', '/'],
-    ['+', '-'],
+    [('^', 'r')],
+    [('*', 'l'), ('/', 'l'), ('%', 'l')],
+    [('+', 'l'), ('-', 'l')],
 ]
 
 
@@ -51,8 +52,10 @@ def precedence(value_parser, precedence_levels, combine):
         return any_operator_in_list(precedence_level) ^ combine
     parser = value_parser * op_parser(precedence_levels[0])
     for precedence_level in precedence_levels[1:]:
-        parser = parser * op_parser(precedence_level)
-    print('Precedence: '+str(parser))
+        if precedence_level[1] == 'l':
+            parser = parser * op_parser(precedence_level[0])
+        elif precedence_level[1] == 'r':
+            parser = op_parser(precedence_level[0]) * parser
     return parser
 
 

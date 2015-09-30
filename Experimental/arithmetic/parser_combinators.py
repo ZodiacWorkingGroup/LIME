@@ -15,6 +15,9 @@ class Result:
     def __bool__(self):
         return True
 
+    def eval(self):
+        return self.value.eval()
+
 
 class Parser:
     def __init__(self, a, b):
@@ -151,13 +154,9 @@ class Phrase(Parser):
 
     def __call__(self, tokens, pos):
         result = self.parser(tokens, pos)
-        # print('Phrase Parser Result: '+repr(result))
         if result and result.index == len(tokens):
             return result
         else:
-            # print('Phrase Failed')
-            # print(tokens)
-            # print('Result Index: '+repr(result.index))
             return None
 
 
