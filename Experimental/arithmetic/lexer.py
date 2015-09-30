@@ -9,11 +9,12 @@ OP = 'OP'
 PAREN = 'PAREN'
 
 
-def lexl(exp):  # Lex a single line
+def lex(exp):  # Lex a single line
     lexr = lexer()  # Create a Lexer object
 
-    lexr.add_token_expr('^[0-9]+(\.[0-9]+)?', NUM)
-    lexr.add_token_expr('^(\+|-|/|\*|%|^)', OP)
-    lexr.add_token_expr('^[()]', PAREN)
+    lexr.add_token_expr(r'^[\s]', None)
+    lexr.add_token_expr(r'^[0-9]+(\.[0-9]+)?', NUM)
+    lexr.add_token_expr(r'^[()]', PAREN)
+    lexr.add_token_expr(r'^(\+|-|/|\*|%|^)', OP)
 
     return lexr.lex(exp)

@@ -38,7 +38,7 @@ class lexer:
 
         while s < len(exp):
             for x in self.tokens:
-                tokregex = re.compile(x[0])
+                tokregex = re.compile(x[0], re.U)
                 match = tokregex.match(exp[s:])
                 if match:
                     if match.group(0):

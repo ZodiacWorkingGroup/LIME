@@ -1,5 +1,6 @@
 class Exp:
-    pass
+    def __repr__(self):
+        return str(dir(self))
 
 
 class NumExp(Exp):
@@ -8,6 +9,9 @@ class NumExp(Exp):
 
     def eval(self):
         return float(self.val)
+
+    def __repr__(self):
+        return '(NumExp: '+repr(self.val)+')'
 
 
 class OpExp(Exp):
@@ -35,6 +39,9 @@ class OpExp(Exp):
         elif self.op == '^':
             return self.left.eval()**self.right.eval()
 
+    def __repr__(self):
+        return '(OpExp: '+repr(self.op)+', '+repr(self.left)+', '+repr(self.right)+')'
+
 
 class ParenExp(Exp):
     def __init__(self, exp):
@@ -42,3 +49,6 @@ class ParenExp(Exp):
 
     def eval(self):
         return self.exp.eval()
+
+    def __repr__(self):
+        return '(ParenExp: '+repr(self.exp)

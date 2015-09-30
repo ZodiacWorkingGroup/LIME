@@ -9,6 +9,12 @@ class Result:
         self.value = value
         self.index = index
 
+    def __repr__(self):
+        return '{Result: '+repr(self.value)+', '+repr(self.index)+'}'
+
+    def __bool__(self):
+        return True
+
 
 class Parser:
     def __init__(self, a, b):
@@ -30,16 +36,21 @@ class Parser:
     def __call__(self, tokens, args):
         return None
 
+    def __xor__(self, function):
+        return Process(self, function)
+
 
 class Reserved(Parser):
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, value, tag):
+        self.value = value
+        self.tag = tag
 
     def __call__(self, tokens, pos):
-        if pos < len(tokens) and tokens[pos].value == self.name:
+        if pos < len(tokens) and tokens[pos].value == self.value and tokens[pos].tag is self.tag:
             return Result(tokens[pos].value, pos + 1)
         else:
             return None
+
 
 class Tag(Parser):
     def __init__(self, tag):
@@ -51,14 +62,15 @@ class Tag(Parser):
         else:
             return None
 
+
 class Concat(Parser):
     def __call__(self, tokens, pos):
         left_result = self.left(tokens, pos)
         if left_result:
-            right_result = self.right(tokens, left_result.pos)
+            right_result = self.right(tokens, left_result.index)
             if right_result:
                 combined_value = (left_result.value, right_result.value)
-                return Result(combined_value, right_result.pos)
+                return Result(combined_value, right_result.index)
         return None
 
 
@@ -90,7 +102,7 @@ class Exp(Parser):
 
         next_result = result
         while next_result:
-            next_result = next_parser(tokens, result.pos)
+            next_result = next_parser(tokens, result.index)
             if next_result:
                 result = next_result
         return result
@@ -117,7 +129,7 @@ class Rep(Parser):
         result = self.parser(tokens, pos)
         while result:
             results.append(result.value)
-            pos = result.pos
+            pos = result.index
             result = self.parser(tokens, pos)
         return Result(results, pos)
 
@@ -139,7 +151,23 @@ class Phrase(Parser):
 
     def __call__(self, tokens, pos):
         result = self.parser(tokens, pos)
-        if result and result.pos == len(tokens):
+        # print('Phrase Parser Result: '+repr(result))
+        if result and result.index == len(tokens):
             return result
         else:
+            # print('Phrase Failed')
+            # print(tokens)
+            # print('Result Index: '+repr(result.index))
             return None
+
+
+class Process(Parser):
+    def __init__(self, parser, function):
+        self.parser = parser
+        self.function = function
+
+    def __call__(self, tokens, pos):
+        result = self.parser(tokens, pos)
+        if result:
+            result.value = self.function(result.value)
+            return result
