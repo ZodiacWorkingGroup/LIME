@@ -12,10 +12,11 @@ def keyword(kw, tag):
     return Reserved(kw, tag)
 
 num = Tag(NUM) ^ (lambda i: float(i))
+id = Tag(NAME)
 
 
 def aexp_value():
-    return num ^ (lambda i: NumExp(i))
+    return num ^ (lambda i: NumExp(i)) | id ^ (lambda v: VarExp(v))
 
 
 def process_group(parsed):
@@ -68,6 +69,7 @@ def parser():
 
 def parse_tokens(tokens):
     ast = parser()(tokens, 0)
+    print(ast)
     return ast
 
 

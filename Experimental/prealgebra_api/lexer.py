@@ -7,6 +7,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.detach(), sys.stdout.encoding, 'replace
 NUM = 'NUMBER'
 OP = 'OP'
 PAREN = 'PAREN'
+NAME = 'NAME'
 
 
 def lex(exp):  # Lex a single line
@@ -16,6 +17,7 @@ def lex(exp):  # Lex a single line
     lexr.add_token_expr(r'^[0-9]+(\.[0-9]+)?', NUM)
     lexr.add_token_expr(r'^[()]', PAREN)
     lexr.add_token_expr(r'^(\+|-|/|\*|%|\^)', OP)
+    lexr.add_token_expr(r'^[a-zA-Z]+', NAME)
 
     return lexr.lex(exp)
 
