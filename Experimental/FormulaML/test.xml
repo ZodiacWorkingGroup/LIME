@@ -1,9 +1,19 @@
 <document>
 	<formula>
-		<binopexp>
-			<operand index="0">2</operand>
-			<op>+</op>
-			<operand index="1">2</operand>
+		<binopexp type="infix">
+			<operand index="0">
+				<binopexp type="infix">
+					<operand index="0">2</operand>
+					<op>+</op>
+					<operand index="1">3</operand>
+				</binopexp>
+			</operand>
+			<op>=</op>
+			<operand type="infix">
+				<operand index="0">x</operand>
+				<op>/</op>
+				<operand index="1">2</operand>
+			</operand>
 		</binopexp>
 	</formula>
 </document>
