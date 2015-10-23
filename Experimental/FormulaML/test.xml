@@ -1,0 +1,9 @@
+<document>
+	<formula>
+		<binopexp>
+			<operand index="0">2</operand>
+			<op>+</op>
+			<operand index="1">2</operand>
+		</binopexp>
+	</formula>
+</document>

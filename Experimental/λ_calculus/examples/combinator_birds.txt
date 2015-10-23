@@ -31,6 +31,7 @@ R = BTT                  #Robin
 T = CI                   #Thrush
 U = LO                   #Turing (!!!)
 V = BCT                  #Vireo/Pairing
+W = C(BMR)               #Warbler
 W[1] = CW                #Converse Warbler
 Y = SLL                  #Why Bird/Sage Bird
 I* = S(SK)               #Identity Bird Once Removed
