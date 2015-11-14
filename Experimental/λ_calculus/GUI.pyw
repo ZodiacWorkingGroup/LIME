@@ -127,7 +127,8 @@ class LCWin(Tk):
     def keypress(self, e=None):
         self.saved = False
         if self.conf['syntaxHighlighting']:
-            self.lambdawin.highlight_pattern(r'([^().=a-z\s\u2261]|\{[^}]+\})', 'named', regexp=True)  # Highlight names
+            # self.lambdawin.highlight_pattern(r'([^().=a-z\s\u2261]|\{[^}]+\})', 'named', regexp=True)  # Highlight names
+            self.lambdawin.highlight_pattern(r'.(\*+|\[[^\]]+])?|\{[^}]+\}', 'named', regexp=True)
             self.lambdawin.highlight_pattern(u'\u03BB', 'lambda', regexp=True)  # Highlight lambdas
             self.lambdawin.highlight_pattern(r'#.*', 'comment', regexp=True)  # Highlight and italicize commments
             self.lambdawin.highlight_pattern(r'[()]', 'paren', regexp=True)  # Highlight and bold parenthesis

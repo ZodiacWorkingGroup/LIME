@@ -28,7 +28,7 @@ def lexl(exp):  # Lex a single line
     lexr.add_token_expr(r'^[=\u2261]', EQ)  # Equal sign
     lexr.add_token_expr(r'^[a-z]', NAME)  # variables/names in λ-expressions
     lexr.add_token_expr(r'^\{[^}]+\}', ID, (1, -1, 1))
-    lexr.add_token_expr(r'^.(\*+|\[[^\]]+])?', ID)  # IDs that can have λ-expressions assigned to them
+    lexr.add_token_expr(r'^.(\*+|\[[^\]]+])?|\{[^}]+\}', ID)  # IDs that can have λ-expressions assigned to them
 
     return lexr.lex(exp)
 
